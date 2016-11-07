@@ -124,9 +124,19 @@ $(document).ready(function(){
 	});
 }
 	function resetZip() {
-		$("#submitZip").val("");
-		 $("#day3Button").addClass("hide")
-		 $("#day7Button").addClass("hide")
+		$("#reset").on("click", function(){
+		// $("#submitZip").val();
+		$("#submitZip").prop("disabled", false);
+		$("#day3Button").addClass("hide");
+		$("#day3Button").prop("disabled", false);
+		$("#day7Button").addClass("hide");
+		$("#day7Button").prop("disabled", false);
+		$("#reset").addClass("hide");
+		$('.output').empty();
+		$('#zipCode').val("");
+
+			checkZipCode();
+		});
 
 	}
 	
@@ -134,10 +144,6 @@ $(document).ready(function(){
 		// 	var allTheStuff = {today:a,threeday:s,week:d}
 
 
-
-// given a user wants to view weather information
-// when the user visits your initial view
-// then there should be social sharing buttons for Facebook and Twitter
 
 // given a user wants to share a day's forecast
 // when the user performs a gesture on one of the social sharing elements
