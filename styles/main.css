@@ -9,3 +9,6 @@ body #submitZip, body #day3Button, body #day7Button {
   width: 100%;
   background-color: #CEC3C3;
   text-align: center; }
+
+.social {
+  margin: 100px; }

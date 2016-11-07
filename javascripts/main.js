@@ -1,114 +1,139 @@
 "use strict";
 let apiKeys = {};
+		// ADD weather to dom
+	    function putWeatherInDOM (searchValue){
+  			weatherAPI.getDayWeather(apiKeys,searchValue).then(function(items){
+      			// console.log("items from weather call in ajaxCalls.js", items);
+		      	let newListItem = "";
+		          newListItem+=`<div class="col-xs-8"><h4>${items.name}</h4></div>`;
+		          newListItem+=`<div class="col-xs-8"><label>Current Temperature: </label>${items.main.temp}°</div>`;
+		          newListItem+=`<div class="col-xs-8"><label>Current Pressure: </label>${items.main.pressure}mb</div>`;
+		          newListItem+=`<div class="col-xs-8"><label>Current Wind Speed: </label>${items.wind.speed}mph</div>`;
+		          $('.output').append(newListItem);
+		          $('#submitZip').prop("disabled", true);
+		          $("#day3Button").removeClass("hide");
+		          dayThreeForcast(apiKeys, searchValue);
+    });
+  }
+  	    function putThreeDayInDOM (searchValue){
+  			weatherAPI.getThreeDayWeather(apiKeys, searchValue).then(function(items){
+      			console.log("items from weather call in ajaxCalls.js", items);
+		      	let newListItem = "";
+		      	  newListItem+= `<div class="row">`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><h4>${items.city.name}</h4></div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 1 Temperature:</label> ${items.list[0].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 1 Pressure:</label> ${items.list[0].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 1 Wind Speed:</label> ${items.list[0].speed}mph</div>`;
+		          newListItem+=`</div>`;
+		          newListItem+=`<br>`;
+		           newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 2 Temperature:</label> ${items.list[1].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 2 Pressure:</label> ${items.list[1].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 2 Wind Speed:</label> ${items.list[1].speed}mph</div>`;
+		          newListItem+=`<br>`;
+		           newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 3 Temperature:</label> ${items.list[2].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 3 Pressure:</label> ${items.list[2].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 3 Wind Speed:</label> ${items.list[2].speed}mph</div>`;
+		          $('.output').append(newListItem);
+		          $('#submitZip').prop("disabled", true);
+		          $('#day3Button').prop("disabled", true);
+		          $("#day7Button").removeClass("hide");
+		          daySevenForcast(apiKeys, searchValue);
+    });
+  }
+   	    function putSevenDayInDOM (searchValue){
+  			weatherAPI.getSevenDayWeather(apiKeys, searchValue).then(function(items){
+      			console.log("items from weather call in ajaxCalls.js", items);
+		      	let newListItem = "";
+		      	  newListItem+= `<div class="row">`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><h4>${items.city.name}</h4></div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 1 Temperature:</label> ${items.list[0].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 1 Pressure:</label> ${items.list[0].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 1 Wind Speed:</label> ${items.list[0].speed}mph</div>`;
+		          newListItem+=`</div>`;
+		          newListItem+=`<br>`;
+		           newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 2 Temperature:</label> ${items.list[1].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 2 Pressure:</label> ${items.list[1].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 2 Wind Speed:</label> ${items.list[1].speed}mph</div>`;
+		          newListItem+=`<br>`;
+		           newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 3 Temperature:</label> ${items.list[2].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 3 Pressure:</label> ${items.list[2].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 3 Wind Speed:</label> ${items.list[2].speed}mph</div>`;
+		          newListItem+=`<br>`;
+		           newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 4 Temperature:</label> ${items.list[3].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 4 Pressure:</label> ${items.list[3].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 4 Wind Speed:</label> ${items.list[3].speed}mph</div>`;
+		          newListItem+=`<br>`;
+		           newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 5 Temperature:</label> ${items.list[4].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 5 Pressure:</label> ${items.list[4].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 5 Wind Speed:</label> ${items.list[4].speed}mph</div>`;
+		          newListItem+=`<br>`;
+		           newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 6 Temperature:</label> ${items.list[5].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 6 Pressure:</label> ${items.list[5].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 6 Wind Speed:</label> ${items.list[5].speed}mph</div>`;
+		          newListItem+=`<br>`;
+		           newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 7 Temperature:</label> ${items.list[6].temp.day}°</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 7 Pressure:</label> ${items.list[6].pressure}mb</div>`;
+		          newListItem+=`<div class=".col-xs-6 .col-md-4"><label>Day 7 Wind Speed:</label> ${items.list[6].speed}mph</div>`;
+		          $('.output').append(newListItem);
+		          // $('#submitZip').prop("disabled", true);
+		          // $('#day3Button').prop("disabled", true);
+		          $("#day7Button").prop("disabled", true);
+		          $("#reset").removeClass("hide");
+		          resetZip();
+		          // daySevenForcast(apiKeys, searchValue);
+    });
+  }
+// GETTING KEYS FROM WEATHERIIFE 
+$(document).ready(function(){ 
+	 weatherAPI.weatherCredentials().then(function(keys){
+	    apiKeys = keys;
+	    // console.log("apiKeys",apiKeys );
+	    // firebase.initializeApp(apiKeys);
+  });
+});
+	// check if zip is 5 digits or 9 and change color depending which one and calling 
+	function checkZipCode(searchValue) {
+      return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(searchValue);
+    }
+    	$('#submitZip').on('click', function () {
+	        var searchValue = $('#zipCode').val();
+	        // console.log("searchsearchValue",searchValue );
+	        if (checkZipCode(searchValue)) {
+	            $(this).css('color', 'green').html("Valid Zip Code");
+	    			putWeatherInDOM(searchValue);
+	        } else {
+	            $(this).css('color', 'red').html("Invalid Zip Code");      
+	        }
+	    });
 
-let weatherList = (searchText) => { // Getting Keys in apiKeys.json
-	return new Promise ((resolve,reject) => {
-		// FIRST AJAX TO GET KEYS
-		$.ajax({ 
-			method: "GET",
-			url: "apiKeys.json"
-		}).then((response) =>{ 
-			console.log("response",response);
-			apiKeys = response; // assign response of api call to apiKeys array
-			let authHeader = apiKeys.APPID; // assign apiKeys array and APPID Json Keys to authHeader
-			console.log("authHeader",authHeader );
-		//SECOND AJAX TO GET weather api and pass in authHeader and searchText 
-		var today = $.ajax({ 
-		  method: "GET",
-		  url: `http://api.openweathermap.org/data/2.5/weather?zip=${searchText},us&units=imperial&APPID=${authHeader}`,
-		}).then((response2) => {
-		  // console.log("today",today );
-			  console.log("response2", response2);
-			  resolve(response2);
-			}, (errorResponse2) => {
-			  console.log("weather fail", errorResponse2);
-			  reject(errorResponse2);
-			});
-			}, (errorResponse) => {
-			  console.log("errorResponse", errorResponse);
-			});
-		});
-	};
-		// THIRD AJAX TO GET 3 Day weather 
-			// var threeday = $.ajax({ // Get weather api and pass in authHeader and searchText
-			//   method: "GET",
-			//   url: `http://api.openweathermap.org/data/2.5/forecast/daily?q={$cityName},{country code}&cnt={3}&APPID=${authHeader}`,
-			// }).then((response3) => {
-			//   console.log("threeday",threeday );
-			// 	  console.log("response3", response3);
-			// 	  resolve(response3);
-			// 	}, (errorResponse3) => {
-			// 	  console.log("weather 3fail", errorResponse3);
-			// 	  reject(errorResponse3);
-			// 	});
-			// 	}, (errorResponse) => {
-			// 	  console.log("errorResponse", errorResponse);
-		// };
+    function dayThreeForcast(apiKeys, searchValue) {
+    	$('#day3Button').on('click', function(){
+	    		$(this).css('color', 'purple');	
+ 				$( ".output" ).empty().append();
+ 				// console.log("apiKeys",apiKeys );
+ 				putThreeDayInDOM(searchValue);
+    	});
+	}
 
-		
-		// var week = $.ajax({
-		// 	method: "GET",
-		// 	url: `api.openweathermap.org/data/2.5/forecast/daily?q={city name},{country code}&cnt={7}`,
-		// });
-		// var week = $.get(`api.openweathermap.org/data/2.5/forecast/daily?q={city name},{country code}&cnt={7}`);
+	function daySevenForcast(apiKeys, searchValue) {
+		$('#day7Button').on('click', function(){
+	    		$(this).css('color', 'yellow');
+ 				$( ".output" ).empty().append();
+ 				console.log("apiKeys",apiKeys );
+ 				putSevenDayInDOM(searchValue);
+	});
+}
+	function resetZip() {
+		$("#submitZip").val("");
+		 $("#day3Button").addClass("hide")
+		 $("#day7Button").addClass("hide")
 
+	}
+	
 		// $.when(today).done((a,s,d,) => {
 		// 	var allTheStuff = {today:a,threeday:s,week:d}
 
 
-$(document).ready(function() {
-	// check if zip is 5 digits or 9 and change color depending which one
-	function checkZipCode(value) {
-      return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(value);
-    }
-    	$('#submitZip').on('click', function (e) {
-	        e.preventDefault();
-	        var value = $('#zipCode').val();
-	        if (checkZipCode(value)) {
-	            $(this).css('color', 'green').html("Valid Zip Code");
-	        } else {
-	            $(this).css('color', 'red').html("Invalid Zip Code");      
-	        }
-        // call weatherList function then return reponse and make it to array to display in Dom
-    	weatherList(value).then((weatherResponse)=>{
-	    	console.log("weatherResponse",weatherResponse);
-	    	var arr = $.makeArray(weatherResponse);
-	    	console.log("arr",arr );
-	    	$.each(arr, ()  =>{
-	    		// let weatherDom = `<`
-	    		$('#output').append(`<div class="col-md-4"><h4>Current Location:</h4><h3>${weatherResponse.name}</h3><div>
-	    			<h4>Current Temperature:</h4><div><h3>${weatherResponse.main.temp}°</h3></div>
-	    			<h4>Current Air Pressure:</h4><div><h3>${weatherResponse.main.pressure} mb</h3></div>
-	    			<h4>Current Wind Speed: </h4><div><h3>${weatherResponse.wind.speed} mph</h3></div>`);
-	    		$("#day3Button").removeClass("hide");
-	    		$("#day7Button").removeClass("hide");
-	    		let $cityName = weatherResponse.name;
-	    		console.log("$cityName",$cityName );
-    		});
-	    	// weatherThreeDay($cityName, weatherResponse).then((weatherResponseThreeDay)=>{
-	    	// console.log("weatherResponseThreeDay",weatherResponseThreeDay );
-	    	// });
-	    	$('#day3Button').on('click', function(a){
-	    		$(this).css('color', 'purple');	
- 				$( "#output" ).empty().append(`some 3 day forcast`);
-	    	});
-
-	    	$('#day7Button').on('click', function(a){
-	    		$(this).css('color', 'yellow');
- 				$( "#output" ).empty().append(`some 7 day forcast`);
-	    		// a.preventDefault();
-	    	});
-    	});
-    });
-});
-// An affordance to view the forecast for the current day, the next three days, or the next 7 days
-// given the user is viewing the current forecast
-// when the user clicks on the link to view the 3 day forecast
-// then the current data (see above), and the data for the next 3 days should be displayed
-
-// given the user is viewing the current forecast
-// when the user clicks on the link to view the 7 day forecast
-// then the current data (see above), and the data for the next 7 days should be displayed
 
 // given a user wants to view weather information
 // when the user visits your initial view
