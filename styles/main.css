@@ -1,0 +1,14 @@
+body h1, body h4 {
+  color: green;
+  text-align: center; }
+
+body #submitZip, body #day3Button, body #day7Button {
+  background-color: #A4CFF0; }
+
+.search-bar {
+  width: 100%;
+  background-color: #CEC3C3;
+  text-align: center; }
+
+.social {
+  margin: 100px; }
