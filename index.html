@@ -1,46 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Local Weather</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="styles/main.css">
-</head>
-<body>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<h1>Local Weather</h1>
-<div class="row">
-	
-<div class="row search-bar col-md-4">
-  <div class="panel-body">
-   <input type="text" pattern="[0-9]{5}" title= "Five digit zip code" id="zipCode" placeholder="Enter Zip Code" />
-  	<button type="button" class="btn btn-primary btn-lg" id="submitZip">Find Location</button>
-  	<button type="button" class="btn btn-primary btn-lg hide" id="day3Button">3 Day Forecast</button>
-  	<button type="button" class="btn btn-primary btn-lg hide" id="day7Button">7 Day Forecast</button>
-  	<button type="button" class="btn btn-primary btn-lg hide" id="reset">Try a New Zip Code</button>
-	</div>
 
-	<div class="output">
-		
-</div>
-	</div>
-		<div class= "social">
-		<a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false" id="twitterBtn">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-		<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
-	</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-<script src="/javascripts/weatherIIFE.js" type="text/javascript" charset="utf-8" async defer></script>
-<script src="/javascripts/ajaxCalls.js" type="text/javascript" charset="utf-8" async defer></script>
-<script src="/javascripts/main.js" type="text/javascript" charset="utf-8" async defer></script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Local Weather</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <h1>Local Weather</h1>
+    <div class="row">
+        <div class="row search-bar col-md-4">
+            <div class="panel-body">
+                <input type="text" pattern="[0-9]{5}" title="Five digit zip code" id="zipCode" placeholder="Enter Zip Code" />
+                <button type="button" class="btn btn-primary btn-lg" id="submitZip">Find Location</button>
+                <button type="button" class="btn btn-primary btn-lg hide" id="day3Button">3 Day Forecast</button>
+                <button type="button" class="btn btn-primary btn-lg hide" id="day7Button">7 Day Forecast</button>
+                <button type="button" class="btn btn-primary btn-lg hide" id="reset">Try a New Zip Code</button>
+            </div>
+            <div class="output">
+            </div>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+        <script src="/javascripts/weatherIIFE.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="/javascripts/ajaxCalls.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="/javascripts/firebaseAuth.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="/javascripts/main.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
+
 </html>
